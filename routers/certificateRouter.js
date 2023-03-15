@@ -46,9 +46,9 @@ certificateRouter.delete(
 );
 
 //  getCertificateById
-// certificateRouter.get(
-//   "/:id",
-//   validateAdminToken,
-//   certificateController.getCertificateById
-// );
+certificateRouter.get(
+  "/:id",
+  validateAdminToken,
+  certificateController.getCertificateById
+);
 module.exports = certificateRouter;

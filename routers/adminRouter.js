@@ -7,7 +7,6 @@ const {
   updateAdminSchema,
 } = require("../joiValidationSchema/adminValidationSchema");
 const joiSchemaValidation = require("../middlesware/joiSchemaValidation");
-// const { updateAdmin } = require("../services/adminService");
 const { validateAdminToken } = require("../middlesware/jwtAdminValidation");
 
 // registerAdmin

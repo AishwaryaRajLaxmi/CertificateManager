@@ -38,9 +38,4 @@ module.exports.loginAdminSchema = Joi.object({
   password: Joi.string().required(),
 });
 
-// objectIdSchema
-module.exports.objectIdSchema = Joi.object({
-  id: Joi.custom((value, helper) => {
-    if (!isValid(value)) return helper.message("Object is not valid");
-  }),
-});
+

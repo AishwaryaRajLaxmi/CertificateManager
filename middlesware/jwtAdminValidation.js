@@ -15,7 +15,6 @@ module.exports.validateAdminToken = (req, res, next) => {
     //user will get the whole object(payload)
     const admin = jwt.verify(tokenString, process.env.JWT_SECRET_KEY);
     req.params.adminId = admin.adminId;
-    console.log("ad", req.params.adminId);
 
     next();
   } catch (err) {

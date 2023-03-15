@@ -6,7 +6,6 @@ const jwt = require("jsonwebtoken");
 // createAdmin
 
 module.exports.createAdmin = async (serviceData) => {
-  // console.log();
   try {
     //find,if existed
     const adminResponse = await adminModel.findOne({
@@ -45,8 +44,10 @@ module.exports.loginAdmin = async (serviceData) => {
     }
 
     // compare the password
-    const isMatch =await bcrypt.compare(serviceData.password, userResponse.password);
-    
+    const isMatch = await bcrypt.compare(
+      serviceData.password,
+      userResponse.password
+    );
 
     if (isMatch) {
       const token = jwt.sign(
@@ -68,11 +69,10 @@ module.exports.loginAdmin = async (serviceData) => {
 
 // updateAdmin
 module.exports.updateAdmin = async (aid, body) => {
-  
   try {
-    if(body.password){
-      const hashPassword=await bcrypt.hash(body.password,10);
-      body.password=hashPassword;
+    if (body.password) {
+      const hashPassword = await bcrypt.hash(body.password, 10);
+      body.password = hashPassword;
     }
     const response = await adminModel.findByIdAndUpdate(aid, body, {
       new: true,

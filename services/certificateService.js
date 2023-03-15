@@ -6,7 +6,6 @@ module.exports.createCertificate = async (body) => {
     const serviceResponse = await certiFicateModel
       .findOne()
       .sort({ createdAt: -1 });
-    // console.log('serviceresponse',serviceResponse);
 
     if (serviceResponse == null) {
       body.serialNumber = 210;
@@ -14,7 +13,7 @@ module.exports.createCertificate = async (body) => {
     } else {
       body.serialNumber = serviceResponse.serialNumber + 1;
       let sNumber = body.serialNumber + "";
-.
+
       if (sNumber.length === 3) {
         body.certificateNumber =
           "BR/" + body.session + "/00" + body.serialNumber;
@@ -37,30 +36,6 @@ module.exports.createCertificate = async (body) => {
     throw new Error(error.message);
   }
 };
-
-// // createCertificate
-// module.exports.createCertificate = async (body) => {
-//   try {
-//     const serviceResponse = await certiFicateModel.findOne({
-//       $or: [
-//         { serialNumber: body.serialNumber },
-//         { certificateNumber: body.certificateNumber },
-//       ],
-//     });
-
-//     if (serviceResponse) {
-//       throw new Error("Certificate already exists");
-//     }
-//     const newData = new certiFicateModel(body);
-//     const response = newData.save();
-//     return response;
-//   } catch (error) {
-//     console.log(
-//       `Something went wrong :Service :certificateService :createCertificate\nError:${error.message}`
-//     );
-//     throw new Error(error.message);
-//   }
-// };
 
 // updateCertificate
 module.exports.updateCertificate = async (id, body) => {
@@ -112,7 +87,7 @@ module.exports.getAllCertificates = async (serviceData) => {
 // getCertificatesByid
 module.exports.getCertificateById = async (serviceData) => {
   try {
-    const response = await certiFicateModel.find(serviceData);
+    const response = await certiFicateModel.findById(serviceData);
     return response;
   } catch (error) {
     console.log(
@@ -124,6 +99,7 @@ module.exports.getCertificateById = async (serviceData) => {
 
 // findCertificate
 module.exports.findCertificate = async (serviceData) => {
+  console.log("serveicedaa", serviceData);
   try {
     const response = await certiFicateModel.findOne({
       $and: [

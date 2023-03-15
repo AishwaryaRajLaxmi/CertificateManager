@@ -1,7 +1,7 @@
 const certificateService = require("../services/certificateService");
 const constants = require("../helpers/constants");
 
-// demo
+// createCertificate
 
 module.exports.createCertificate = async (req, res) => {
   const response = {
@@ -9,11 +9,9 @@ module.exports.createCertificate = async (req, res) => {
   };
   try {
     const serviceResponse = await certificateService.createCertificate(
-      // req.params.adminId,
-      req.body,
-    
+      req.body
     );
-    
+
     response.body = serviceResponse;
     response.status = 200;
     response.message = constants.certificateMessage.CERTIFICATE_CREATED;
@@ -27,30 +25,6 @@ module.exports.createCertificate = async (req, res) => {
   res.status(response.status).send(response);
 };
 
-// createCertificate
-
-// module.exports.createCertificate = async (req, res) => {
-//   const response = {
-//     ...constants.defaultServerResponse,
-//   };
-//   try {
-//     const serviceResponse = await certificateService.createCertificate(
-//       // req.params.adminId,
-//       req.body
-//     );
-//     response.body = serviceResponse;
-//     response.status = 200;
-//     response.message = constants.certificateMessage.CERTIFICATE_CREATED;
-//   } catch (error) {
-//     console.log(
-//       `Something went wrong : controller : certificateController : createCertificate`
-//     );
-//     response.message = error.message;
-//     response.error = error;
-//   }
-//   res.status(response.status).send(response);
-// };
-
 // updateCertificate
 module.exports.updateCertificate = async (req, res) => {
   const response = {
@@ -60,10 +34,8 @@ module.exports.updateCertificate = async (req, res) => {
     const serviceResponse = await certificateService.updateCertificate(
       req.params.id,
       req.body
-      //   req.params.adminId
     );
     response.body = serviceResponse;
-    console.log("rb", response.body);
     response.status = 200;
     response.message = constants.certificateMessage.CERTIFICATE_UPDATED;
   } catch (error) {
@@ -79,7 +51,7 @@ module.exports.updateCertificate = async (req, res) => {
 // deleteCertificate
 module.exports.deleteCertificate = async (req, res) => {
   const response = { ...constants.defaultServerResponse };
-  console.log("red", req.params.id);
+
   try {
     const serviceResponse = await certificateService.deleteCertificate(
       req.params.id
@@ -140,6 +112,7 @@ module.exports.getCertificateById = async (req, res) => {
 // findCertificate
 module.exports.findCertificate = async (req, res) => {
   const response = { ...constants.defaultServerResponse };
+
   try {
     const serviceResponse = await certificateService.findCertificate(req.query);
     response.body = serviceResponse;

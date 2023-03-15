@@ -1,11 +1,10 @@
 const adminService = require("../services/adminService");
 const constants = require("../helpers/constants");
-const { response } = require("express");
 
 // createAdmin
 module.exports.createAdmin = async (req, res) => {
   const response = { ...constants.defaultServerResponse };
-  // console.log("b", req.body);
+
   try {
     const serviceResponse = await adminService.createAdmin(req.body);
     response.body = serviceResponse;
